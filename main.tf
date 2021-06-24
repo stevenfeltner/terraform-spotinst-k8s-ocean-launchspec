@@ -80,7 +80,7 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
         resource                = var.resource
         size_per_resource_unit  = var.size_per_resource_unit
       }
-      no_device                 = var.no_device
+  #    no_device                 = var.no_device
     }
   }
 
@@ -99,7 +99,7 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
     spot_percentage             = var.spot_percentage
   }
 
-  create_actions {
+  create_options {
     initial_nodes               = var.initial_nodes
   }
 }

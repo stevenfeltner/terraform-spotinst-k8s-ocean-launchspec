@@ -157,7 +157,7 @@ variable "throughput" {
 variable "base_size" {
   type        = number
   default     = 30
-  description = "Int. Initial size for volume. (Example: 50)"
+  description = "Initial size for volume. (Example: 50)"
 }
 variable "resource" {
   type        = string
@@ -167,12 +167,12 @@ variable "resource" {
 variable "size_per_resource_unit" {
   type        = number
   default     = 20
-  description = "Int. Additional size (in GB) per resource unit. (Example: baseSize=50, sizePerResourceUnit=20, and instance with 2 CPU is launched; its total disk size will be: 90GB)"
+  description = "Additional size (in GB) per resource unit. (Example: baseSize=50, sizePerResourceUnit=20, and instance with 2 CPU is launched; its total disk size will be: 90GB)"
 }
 variable "no_device" {
   type        = string
   default     = null
-  description = "String. Suppresses the specified device included in the block device mapping of the AMI."
+  description = "Suppresses the specified device included in the block device mapping of the AMI."
 }
 ##################
 
