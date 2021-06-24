@@ -99,7 +99,7 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
     spot_percentage             = var.spot_percentage
   }
 
-  create_options {
-    initial_nodes               = var.initial_nodes
-  }
+#  create_options {
+#    initial_nodes               = var.initial_nodes
+#  }
 }
