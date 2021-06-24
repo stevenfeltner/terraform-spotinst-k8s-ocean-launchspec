@@ -28,7 +28,7 @@ module "ocean_eks_launchspec_stateless" {
 
 ## Create additional Ocean Virtual Node Group (launchspec) ##
 module "ocean_eks_launchspec_gpu" {
-  source = "../k8s-ocean-launchspec"
+  source = "../"
 
   # Spot.io Credentials
   spotinst_token              = local.spotinst_token
