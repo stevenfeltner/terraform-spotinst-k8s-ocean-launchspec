@@ -24,7 +24,7 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
   security_groups             = var.security_groups
   subnet_ids                  = var.subnet_ids
   instance_types              = var.instance_types
-  root_volume_size            = var.root_volume_size
+  #root_volume_size            = var.root_volume_size
   associate_public_ip_address = var.associate_public_ip_address
   restrict_scale_down         = var.restrict_scale_down
 
