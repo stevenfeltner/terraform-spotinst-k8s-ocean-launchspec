@@ -156,7 +156,7 @@ variable "throughput" {
 ## Dynamic Volume Size ##
 variable "base_size" {
   type        = number
-  default     = 30
+  default     = 20
   description = "Initial size for volume. (Example: 50)"
 }
 variable "resource" {
@@ -166,7 +166,7 @@ variable "resource" {
 }
 variable "size_per_resource_unit" {
   type        = number
-  default     = 20
+  default     = 10
   description = "Additional size (in GB) per resource unit. (Example: baseSize=50, sizePerResourceUnit=20, and instance with 2 CPU is launched; its total disk size will be: 90GB)"
 }
 variable "no_device" {
