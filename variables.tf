@@ -108,17 +108,17 @@ variable "tags" {
 ## Block Device Mappings ##
 variable "device_name" {
   type        = string
-  default     = ""
-  description = "Set device name. (Example: /dev/xvda1)."
+  default     = "/dev/xvda"
+  description = "Set device name. (Example: /dev/xvda)."
 }
 variable "delete_on_termination" {
   type        = string
-  default     = null
+  default     = true
   description = "Flag to delete the EBS on instance termination."
 }
 variable "encrypted" {
   type        = bool
-  default     = null
+  default     = false
   description = "Enables EBS encryption on the volume."
 }
 variable "iops" {
@@ -138,12 +138,12 @@ variable "snapshot_id" {
 }
 variable "volume_type" {
   type        = string
-  default     = null
+  default     = "gp2"
   description = "The type of the volume. (Example: gp2)."
 }
 variable "volume_size" {
   type        = number
-  default     = null
+  default     = 30
   description = "The size, in GB of the volume."
 }
 variable "throughput" {
@@ -156,7 +156,7 @@ variable "throughput" {
 ## Dynamic Volume Size ##
 variable "base_size" {
   type        = number
-  default     = 20
+  default     = 10
   description = "Initial size for volume. (Example: 50)"
 }
 variable "resource" {

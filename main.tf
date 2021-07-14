@@ -73,14 +73,14 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
       kms_key_id                = var.kms_key_id
       snapshot_id               = var.snapshot_id
       volume_type               = var.volume_type
-      #volume_size               = var.volume_size
+      //volume_size               = var.volume_size
       throughput                = var.throughput
       dynamic_volume_size {
         base_size               = var.base_size
         resource                = var.resource
         size_per_resource_unit  = var.size_per_resource_unit
       }
-  #    no_device                 = var.no_device
+      //no_device                 = var.no_device
     }
   }
 
