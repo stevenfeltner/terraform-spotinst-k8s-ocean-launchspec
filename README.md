@@ -14,11 +14,11 @@ module "ocean_eks_launchspec_stateless" {
   source = "stevenfeltner/k8s-ocean-launchspec/spotinst"
 
   # Spot.io Credentials
-  spotinst_token              = local.spotinst_token
-  spotinst_account            = local.spotinst_account
+  spotinst_token              = "redacted"
+  spotinst_account            = "redacted"
 
   cluster_name = local.cluster_name
-  ocean_id = module.ocean_eks.ocean_id
+  ocean_id = module.k8s-ocean.ocean_id
 
   # Name of VNG in Ocean
   name = "stateless"
@@ -34,11 +34,11 @@ module "ocean_eks_launchspec_stateless" {
 module "ocean_eks_launchspec_gpu" {
   source = "stevenfeltner/k8s-ocean-launchspec/spotinst"
   # Spot.io Credentials
-  spotinst_token              = local.spotinst_token
-  spotinst_account            = local.spotinst_account
+  spotinst_token              = "redacted"
+  spotinst_account            = "redacted"
 
   cluster_name = local.cluster_name
-  ocean_id = module.ocean_eks.ocean_id
+  ocean_id = module.k8s-ocean.ocean_id
 
   # Name of VNG in Ocean
   name = "gpu"
@@ -50,7 +50,7 @@ module "ocean_eks_launchspec_gpu" {
   # Limit VNG to specific instance types
   #instance_types = ["g4dn.xlarge","g4dn.2xlarge"]
   # Change the spot %
-  spot_percentage = 0
+  spot_percentage = 50
 }
 
 module "ocean-controller" {
