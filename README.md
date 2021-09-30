@@ -73,7 +73,7 @@ module "ocean-controller" {
 | spotinst/spotinst | >= 1.30.0 |
 
 ## Modules
-* `k8s-ocean` - Creates Ocean Cluster
+* `k8s-ocean` - Creates Ocean Cluster [Doc](https://registry.terraform.io/modules/stevenfeltner/k8s-ocean/spotinst/latest)
 * `ocean-controller` - Create and installs spot ocean controller pod [Doc](https://registry.terraform.io/modules/spotinst/ocean-controller/spotinst/latest)
 * `k8s-ocean-launchspec` - (Optional) Add custom virtual node groups [Doc](https://registry.terraform.io/modules/stevenfeltner/k8s-ocean-launchspec/spotinst/latest)
 
