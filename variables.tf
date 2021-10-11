@@ -51,7 +51,12 @@ variable "ami_id" {
 variable "max_instance_count" {
   type        = number
   default     = null
-  description = "Maximum number of nodes launch by Spot VNG"
+  description = "(Optional) Set a maximum number of instances per Virtual Node Group. Can be null. If set, value must be greater than or equal to 0."
+}
+variable "min_instance_count" {
+  type        = number
+  default     = null
+  description = "(Optional) Set a minimum number of instances per Virtual Node Group. Can be null. If set, value must be greater than or equal to 0."
 }
 variable "instance_types" {
   type        = list(string)
