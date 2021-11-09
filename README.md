@@ -4,6 +4,7 @@ Spotinst Terraform Module to integrate existing k8s node groups with Ocean launc
 
 
 ## Usage
+Note: This module will automatically import any tags defined in the AWS provider `default_tags`
 ```hcl
 module "k8s-ocean" {
   ...
@@ -19,15 +20,14 @@ module "ocean_eks_launchspec_stateless" {
 
   cluster_name = local.cluster_name
   ocean_id = module.k8s-ocean.ocean_id
+  
+  name = "stateless" # Name of VNG in Ocean
+  #ami_id = "" # Can change the AMI
 
-  # Name of VNG in Ocean
-  name = "stateless"
-  # Can change the AMI
-  #ami_id = ""
-  # Add Labels or taints
   labels = [{key="type",value="stateless"}]
   #taints = [{key="type",value="stateless",effect="NoSchedule"}]
-  tags = [{key = "CreatedBy", value = "stevenfeltner"}]
+  
+  tags = {CreatedBy = "terraform"} #Addition Tags
 }
 
 ## Create additional Ocean Virtual Node Group (launchspec) ##
@@ -39,18 +39,15 @@ module "ocean_eks_launchspec_gpu" {
 
   cluster_name = local.cluster_name
   ocean_id = module.k8s-ocean.ocean_id
-
-  # Name of VNG in Ocean
-  name = "gpu"
-  # Can change the AMI
-  #ami_id = ""
-  # Add Labels or taints
+  
+  name = "gpu"  # Name of VNG in Ocean
+  #ami_id = "" # Can chang  # Add Labels or taints
+  
   labels = [{key="type",value="gpu"}]
   taints = [{key="type",value="gpu",effect="NoSchedule"}]
-  # Limit VNG to specific instance types
-  #instance_types = ["g4dn.xlarge","g4dn.2xlarge"]
-  # Change the spot %
-  spot_percentage = 50
+  
+  #instance_types = ["g4dn.xlarge","g4dn.2xlarge"] # Limit VNG to specific instance types
+  spot_percentage = 50 # Change the spot %
 }
 
 module "ocean-controller" {

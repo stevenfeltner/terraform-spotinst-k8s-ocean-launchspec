@@ -101,10 +101,7 @@ variable "taints" {
   description = "taints / toleration"
 }
 variable "tags" {
-  type = list(object({
-    key = string
-    value = string
-  }))
+  type = map(string)
   default = null
   description = "Tags to be added to resources"
 }
