@@ -6,6 +6,11 @@ Spotinst Terraform Module to integrate existing k8s node groups with Ocean launc
 ## Usage
 Note: This module will automatically import any tags defined in the AWS provider `default_tags`
 ```hcl
+provider "spotinst" {
+  token   = "redacted"
+  account = "redacted"
+}
+
 module "k8s-ocean" {
   ...
 }
