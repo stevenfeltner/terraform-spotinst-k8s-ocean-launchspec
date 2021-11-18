@@ -1,51 +1,39 @@
-#Can move these to variables
-locals {
-  spotinst_token = ""
-  spotinst_account = "act-12345"
-  cluster_name = "EKS-Workshop"
+provider "spotinst" {
+  token = "redacted"
+  account = "redacted"
 }
 
 ## Create Ocean Virtual Node Group (launchspec) ##
 module "ocean_eks_launchspec_stateless" {
-  source = "../k8s-ocean-launchspec"
+  source = "../"
 
-  # Spot.io Credentials
-  spotinst_token              = local.spotinst_token
-  spotinst_account            = local.spotinst_account
-
-  cluster_name = local.cluster_name
-  ocean_id = module.k8s-ocean.ocean_id
+  cluster_name  = var.cluster_name
+  ocean_id      = module.k8s-ocean.ocean_id
 
   # Name of VNG in Ocean
   name = "stateless"
-  # Can change the AMI
-  #ami_id = ""
   # Add Labels or taints
   labels = [{key="type",value="stateless"}]
   #taints = [{key="type",value="stateless",effect="NoSchedule"}]
-  tags = [{key = "CreatedBy", value = "terraform"}]
+  tags = {CreatedBy = "terraform"}
 }
 
 ## Create additional Ocean Virtual Node Group (launchspec) ##
 module "ocean_eks_launchspec_gpu" {
   source = "../"
 
-  # Spot.io Credentials
-  spotinst_token              = local.spotinst_token
-  spotinst_account            = local.spotinst_account
-
-  cluster_name = local.cluster_name
-  ocean_id = module.k8s-ocean.ocean_id
+  cluster_name  = var.cluster_name
+  ocean_id      = module.k8s-ocean.ocean_id
 
   # Name of VNG in Ocean
   name = "gpu"
-  # Can change the AMI
-  #ami_id = ""
+
   # Add Labels or taints
   labels = [{key="type",value="gpu"}]
   taints = [{key="type",value="gpu",effect="NoSchedule"}]
   # Limit VNG to specific instance types
   #instance_types = ["g4dn.xlarge","g4dn.2xlarge"]
+
   # Change the spot %
   #spot_percentage = 50
 }

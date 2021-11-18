@@ -1,28 +1,16 @@
-terraform {
-  required_version = ">= 0.13.0"
-  required_providers {
-    spotinst = {
-      source = "spotinst/spotinst"
-    }
-  }
-}
-
-data "aws_default_tags" "default_tags" {}
-
 ## Create Virtual Node group (Launch Spec)
 resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
-  ocean_id = var.ocean_id
-  name = var.name
-
+  ocean_id                    = var.ocean_id
+  name                        = var.name
   user_data                   = var.user_data
   image_id                    = var.ami_id
   iam_instance_profile        = var.worker_instance_profile_arn
   security_groups             = var.security_groups
   subnet_ids                  = var.subnet_ids
   instance_types              = var.instance_types
+  preferred_spot_types        = var.preferred_spot_types
   #root_volume_size            = var.root_volume_size
-  associate_public_ip_address = var.associate_public_ip_address
-  restrict_scale_down         = var.restrict_scale_down
+
 
   # Required tags
   tags {
@@ -51,6 +39,9 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
     }
   }
 
+  associate_public_ip_address = var.associate_public_ip_address
+  restrict_scale_down         = var.restrict_scale_down
+
   dynamic labels {
     for_each = var.labels == null ? [] : var.labels
     content {
@@ -68,6 +59,13 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
     }
   }
 
+  ## Elastic_ip_pool
+  elastic_ip_pool {
+    tag_selector {
+      tag_key   = var.elastic_ip_pool_tag_selector_key
+      tag_value = var.elastic_ip_pool_tag_selector_value
+    }
+  }
   ## Block Device Mappings ##
   block_device_mappings {
     device_name                 = var.device_name
@@ -78,7 +76,7 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
       kms_key_id                = var.kms_key_id
       snapshot_id               = var.snapshot_id
       volume_type               = var.volume_type
-      //volume_size               = var.volume_size
+      //volume_size             = var.volume_size
       throughput                = var.throughput
       dynamic_volume_size {
         base_size               = var.base_size
@@ -107,5 +105,9 @@ resource "spotinst_ocean_aws_launch_spec" "nodegroup" {
 
   create_options {
     initial_nodes               = var.initial_nodes
+  }
+
+  delete_options {
+    force_delete                = var.force_delete
   }
 }

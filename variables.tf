@@ -5,7 +5,7 @@ variable "ocean_id" {
 }
 variable "cluster_name" {
   type        = string
-  description = "Name of EKS Cluster"
+  description = "Name of Cluster"
 }
 variable "name" {
   type        = string
@@ -198,3 +198,24 @@ variable "initial_nodes" {
   description = "When set to an integer greater than 0, a corresponding amount of nodes will be launched from the created virtual node group."
 }
 ##################
+
+variable "preferred_spot_types" {
+  type        = list(string)
+  default     = null
+  description = "A list of instance types. Takes the preferred types into consideration while maintaining a variety of machine types running for optimized distribution."
+}
+variable "elastic_ip_pool_tag_selector_key" {
+  type        = string
+  default     = null
+  description = "Elastic IP tag key. The Virtual Node Group will consider all Elastic IPs tagged with this tag as a part of the Elastic IP pool to use."
+}
+variable "elastic_ip_pool_tag_selector_value" {
+  type        = string
+  default     = null
+  description = "Elastic IP tag value."
+}
+variable "force_delete" {
+  type        = bool
+  default     = null
+  description = "When set to true, delete even if it is the last Virtual Node Group (also, the default Virtual Node Group must be configured with useAsTemlateOnly = true). Should be set at creation or update, but will be used only at deletion."
+}

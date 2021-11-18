@@ -72,7 +72,7 @@ module "ocean-controller" {
 
 | Name | Version |
 |------|---------|
-| spotinst/spotinst | >= 1.30.0 |
+| spotinst/spotinst | >= 1.60.0 |
 
 ## Modules
 * `k8s-ocean` - Creates Ocean Cluster [Doc](https://registry.terraform.io/modules/stevenfeltner/k8s-ocean/spotinst/latest)
